@@ -1,12 +1,9 @@
 package com.example.demo;
 
-import jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle;
 import org.springframework.stereotype.Service;
 import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
-
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
 
 @Service
 public class ThreadRepository {

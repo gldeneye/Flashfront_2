@@ -23,7 +23,7 @@ public class ThreadController {
         int pageCount = numberOfPages(PAGE_SIZE);
         int[] pages = toArray(pageCount);
 
-        model.addAttribute("thread", threads);
+        model.addAttribute("threads", threads);
         model.addAttribute("pages", pages);
         model.addAttribute("currentPage", page);
         model.addAttribute("showPrev", page > 1);

@@ -2,19 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"></meta>
-    <title>Books</title>
+    <title>Flashfront</title>
 </head>
 <body>
-<h1>Books</h1>
+<h1>Flashfront</h1>
 
     <p><a href="/customers">Customers</a></p>
 
-    <a href="/add">New Thread</a>
+    <p><a href="/add">New Thread</a></p>
 
     <table style="text-align:left">
-        <tr>
-            <th>Thread</th>
-        </tr>
         <tr th:each="thread : ${threads}">
             <th><a th:href="'/thread/' + ${currentPage} + '/' + ${thread.title}" th:text="${thread.title}"></a></th>
         </tr>
