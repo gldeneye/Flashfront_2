@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +34,19 @@ public class ThreadController {
     }
 
     @GetMapping("/thread/{page}/{title}")
-    public String thread(Model model, @PathVariable Integer page, @PathVariable String title) {
+    public String thread(Model model, @PathVariable Integer page, @PathVariable String title, HttpSession session) {
         Thread thread = threadRepository.getThread(title); // todo replace with call GET /book/{id}
+        session.setAttribute("title", title);
         model.addAttribute("page", page);
         model.addAttribute("thread", thread);
         model.addAttribute("comments", thread.getComments());
+        return "thread";
+    }
+
+    @PostMapping("/politics")
+    public String comments(@RequestParam String comment, HttpSession session) {
+        String title = (String) session.getAttribute("title");
+        threadRepository.getThread(title).setComments(comment);
         return "thread";
     }
 
