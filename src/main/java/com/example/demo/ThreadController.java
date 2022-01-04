@@ -37,7 +37,7 @@ public class ThreadController {
         Thread thread = threadRepository.getThread(title); // todo replace with call GET /book/{id}
         model.addAttribute("page", page);
         model.addAttribute("thread", thread);
-
+        model.addAttribute("comments", thread.getComments());
         return "thread";
     }
 

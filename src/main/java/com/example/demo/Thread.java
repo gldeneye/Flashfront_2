@@ -24,8 +24,8 @@ public class Thread {
         return comments;
     }
 
-    public void setComments(List<String> comments) {
-        this.comments = comments;
+    public void setComments(String comment) {
+        this.comments.add(comment);
     }
 
     public boolean isNew() {
