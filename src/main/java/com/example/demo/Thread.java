@@ -28,11 +28,16 @@ public class Thread {
         return comments;
     }
 
-    public void setComments(String comment) {
+    public Object setComments(String comment) {
         this.comments.add(comment);
+        return null;
     }
 
     public boolean isNew() {
         return this.title == null;
+    }
+
+    public Object setComments() {
+        return null;
     }
 }

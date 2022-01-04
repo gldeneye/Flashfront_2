@@ -17,9 +17,9 @@ public class ThreadController {
     private ThreadRepository threadRepository;
 
     @GetMapping("/")
-    public String threads(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+    public String threads(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
-        List<Thread> threads = getPage(page-1, PAGE_SIZE);
+        List<Thread> threads = getPage(page - 1, PAGE_SIZE);
         int pageCount = numberOfPages(PAGE_SIZE);
         int[] pages = toArray(pageCount);
 
@@ -44,22 +44,22 @@ public class ThreadController {
     private int[] toArray(int num) {
         int[] result = new int[num];
         for (int i = 0; i < num; i++) {
-            result[i] = i+1;
+            result[i] = i + 1;
         }
         return result;
     }
 
     private List<Thread> getPage(int page, int pageSize) {
         List<Thread> threads = threadRepository.getThreads(); // todo replace with call GET /book
-        int from = Math.max(0,page*pageSize);
-        int to = Math.min(threads.size(),(page+1)*pageSize);
+        int from = Math.max(0, page * pageSize);
+        int to = Math.min(threads.size(), (page + 1) * pageSize);
 
         return threads.subList(from, to);
     }
 
     private int numberOfPages(int pageSize) {
         List<Thread> books = threadRepository.getThreads(); // todo replace with call GET /book
-        return (int)Math.ceil(new Double(books.size()) / pageSize);
+        return (int) Math.ceil(new Double(books.size()) / pageSize);
     }
 
     @GetMapping("/addThread")
@@ -68,23 +68,17 @@ public class ThreadController {
         return "formThread";
     }
 
-    @GetMapping("/addComment")
-    public String addComment(Model model, @RequestParam String title, @RequestParam ArrayList<String> comments) {
-        model.addAttribute("thread", new Thread(title, comments));
-        return "form";
-    }
-
-    @PostMapping("/save")
-    public String set(@ModelAttribute Thread thread) {
-        if (thread.isNew()) {
-            threadRepository.addThread(thread); // todo replace with call POST /book (with book object as json in request body)
-        }
-        else {
-            threadRepository.editThread(thread);
-            // todo replace with call PUT /book/{id} (with book object as json in request body
-        }
+    @PostMapping("/savethread")
+    public String saveThread(@ModelAttribute Thread thread) {
+        threadRepository.addThread(thread); // todo replace with call POST /book (with book object as json in request body)
         return "redirect:/";
     }
+
+    @PostMapping("/saveComment/{title}")
+    public String setComment(@ModelAttribute String comment, @PathVariable String title) {
+            threadRepository.getThread(title).setComments(comment); // todo replace with call POST /book (with book object as json in request body)
+            return "redirect:/";
+        }
 
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable String title) {
