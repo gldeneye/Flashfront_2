@@ -31,8 +31,8 @@ public class ThreadController {
         return "threads";
     }
 
-    @GetMapping("/book/{page}/{title}")
-    public String book(Model model, @PathVariable Integer page, @PathVariable String title) {
+    @GetMapping("/thread/{page}/{title}")
+    public String thread(Model model, @PathVariable Integer page, @PathVariable String title) {
         Thread thread = threadRepository.getThread(title); // todo replace with call GET /book/{id}
         model.addAttribute("page", page);
         model.addAttribute("thread", thread);
