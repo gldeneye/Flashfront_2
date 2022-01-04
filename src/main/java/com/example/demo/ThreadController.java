@@ -62,8 +62,14 @@ public class ThreadController {
         return (int)Math.ceil(new Double(books.size()) / pageSize);
     }
 
-    @GetMapping("/add")
-    public String add(Model model, @RequestParam String title, @RequestParam ArrayList<String> comments) {
+    @GetMapping("/addThread")
+    public String addThread(Model model) {
+        model.addAttribute("thread", new Thread());
+        return "formThread";
+    }
+
+    @GetMapping("/addComment")
+    public String addComment(Model model, @RequestParam String title, @RequestParam ArrayList<String> comments) {
         model.addAttribute("thread", new Thread(title, comments));
         return "form";
     }

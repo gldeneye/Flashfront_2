@@ -12,6 +12,10 @@ public class Thread {
         this.comments = comments;
     }
 
+    public Thread() {
+
+    }
+
     public String getTitle() {
         return title;
     }
@@ -29,6 +33,6 @@ public class Thread {
     }
 
     public boolean isNew() {
-        return isNew();
+        return this.title == null;
     }
 }
