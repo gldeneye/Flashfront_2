@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Thread</title>
+</head>
+<body>
+    <h1 th:text="${thread.title}"></h1>
+
+    <form action="/politics" method="post">
+        <textarea class="form-control" rows="5" name="comment">What are you thinking about?</textarea>
+        <input href="/" type= "submit" value="Send">
+    </form>
+
+    <ul th:each="comment : ${comments}" th:text="${comment}"></ul>
+
+    <button><a href="/">Back</a> </button>
+
+</body>
+</html>
