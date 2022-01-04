@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -62,8 +63,8 @@ public class ThreadController {
     }
 
     @GetMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("thread", new Thread());
+    public String add(Model model, @RequestParam String title, @RequestParam ArrayList<String> comments) {
+        model.addAttribute("thread", new Thread(title, comments));
         return "form";
     }
 
