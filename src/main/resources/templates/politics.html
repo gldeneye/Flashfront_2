@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/politics" method="post">
+    <input type="form-control" rows="4" name="politicItem"/>
+    <input type="submit"/>
+
+    <textarea class="form-control" rows="3"> name="politicItem</textarea>
+
+</form>
+
+<ul>
+    <li th:each="politicItem : ${session.politicList}" th:text="${politicItem}"></li>
+</ul>
+
+<form action>
+
+    <input href="/" type= "submit" value="tillbaka">
+
+</form>
+</body>
+</html>
