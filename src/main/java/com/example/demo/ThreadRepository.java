@@ -14,9 +14,10 @@ public class ThreadRepository {
 
     public ThreadRepository() {
         threads = new ArrayList<>();
-//        for (int i = 1; i <= 9; i++) {
-//            books.add(new Book(new Long(200+i), "Book Title " + i, "Author name " + i, 40 + i));
-//        }
+
+        threads.add(new Thread("politics", new ArrayList<>()));
+        threads.add(new Thread("business", new ArrayList<>()));
+
     }
 
     // get one thread

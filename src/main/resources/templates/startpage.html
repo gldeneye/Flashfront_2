@@ -8,6 +8,10 @@
 
 <h1> Välkommen till vårt underbara forum </h1>
 
+<ul>
+    <li th:each="item : ${session.businessList}" th:text="${item}"></li>
+</ul>
+
 <p> <a href="/business" > Business</a></p>
 
 <p> <a href="/politics" > Politics</a></p>
