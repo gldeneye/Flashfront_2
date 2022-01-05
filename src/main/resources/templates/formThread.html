@@ -7,11 +7,9 @@
 <body>
     <h1>Create new thread</h1>
 
-    <form action="/savethread" th:object="${thread}" method="POST">
+    <form action="/savethread/{title}" method="POST">
         <p>What will the thread be about?</p>
-        <input type="text" th:field="*{title}"/>
-        <input th:if="${thread.title != null}" type="hidden" th:field="*{title}"/>
-        <input type="submit" value="Save thread">
+        <input type="submit" value="Save thread" name="comment">
     </form>
 
 </body>

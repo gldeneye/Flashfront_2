@@ -7,12 +7,13 @@
 <body>
     <h1 th:text="${thread.title}"></h1>
 
-    <form action="/saveComment" th:object="${thread}" method="POST">
+    <form action="/saveComment" method="POST">
         <textarea class="form-control" rows="5" name="comment">What are you thinking about?</textarea>
-        <input href="/${thread}" type="submit" value="Publish">
+        <input type="hidden" name="title" th:value="${thread.title}">
+        <input type="submit" value="Publish">
     </form>
 
-    <ul th:each="comment : ${comments}" th:text="${comment}"></ul>
+    <ul th:each="comment : ${thread.comments}" th:text="${comment}"></ul>
 
     <button><a href="/">Back</a> </button>
 

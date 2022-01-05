@@ -37,7 +37,6 @@ public class ThreadController {
         Thread thread = threadRepository.getThread(title); // todo replace with call GET /book/{id}
         model.addAttribute("page", page);
         model.addAttribute("thread", thread);
-        model.addAttribute("comments", thread.getComments());
         return "thread";
     }
 
@@ -74,10 +73,12 @@ public class ThreadController {
         return "redirect:/";
     }
 
-    @PostMapping("/saveComment/{title}")
-    public String setComment(@ModelAttribute String comment, @PathVariable String title) {
-            threadRepository.getThread(title).setComments(comment); // todo replace with call POST /book (with book object as json in request body)
-            return "redirect:/";
+    @PostMapping("/saveComment")
+    public String setComment(Model model, @RequestParam String comment, @RequestParam String title) {
+        Thread thread = threadRepository.getThread(title);
+        thread.setComments(comment);
+        model.addAttribute("thread",thread);
+            return "thread";
         }
 
     @GetMapping("/edit/{id}")
