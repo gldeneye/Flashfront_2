@@ -28,6 +28,10 @@ public class Thread {
         return comments;
     }
 
+    public String getSpecificComment(int place) {
+        return comments.get(place);
+    }
+
     public Object setComments(String comment) {
         this.comments.add(comment);
         return null;
@@ -39,5 +43,10 @@ public class Thread {
 
     public Object setComments() {
         return null;
+    }
+
+    public int getNumOfComments(){
+        int numOfComments = comments.size();
+        return numOfComments;
     }
 }
