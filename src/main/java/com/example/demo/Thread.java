@@ -5,15 +5,10 @@ import java.util.List;
 
 public class Thread {
     private String title;
-    private List<String> comments;
+    private List<String> comments = new ArrayList<>();
 
-    public Thread(String title, ArrayList comments) {
+    public Thread(String title) {
         this.title = title;
-        this.comments = comments;
-    }
-
-    public Thread() {
-
     }
 
     public String getTitle() {

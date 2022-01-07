@@ -16,6 +16,7 @@ public class ThreadController {
     @Autowired
     private ThreadRepository threadRepository;
 
+
     @GetMapping("/")
     public String threads(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 
@@ -34,7 +35,7 @@ public class ThreadController {
 
     @GetMapping("/thread/{page}/{title}")
     public String thread(Model model, @PathVariable Integer page, @PathVariable String title) {
-        Thread thread = threadRepository.getThread(title); // todo replace with call GET /book/{id}
+        Thread thread = threadRepository.getThread(title);
         model.addAttribute("page", page);
         model.addAttribute("thread", thread);
         return "thread";
@@ -49,7 +50,7 @@ public class ThreadController {
     }
 
     private List<Thread> getPage(int page, int pageSize) {
-        List<Thread> threads = threadRepository.getThreads(); // todo replace with call GET /book
+        List<Thread> threads = threadRepository.getThreads();
         int from = Math.max(0, page * pageSize);
         int to = Math.min(threads.size(), (page + 1) * pageSize);
 
@@ -57,19 +58,19 @@ public class ThreadController {
     }
 
     private int numberOfPages(int pageSize) {
-        List<Thread> books = threadRepository.getThreads(); // todo replace with call GET /book
+        List<Thread> books = threadRepository.getThreads();
         return (int) Math.ceil(new Double(books.size()) / pageSize);
     }
 
     @GetMapping("/addThread")
     public String addThread(Model model) {
-        model.addAttribute("thread", new Thread());
+        model.addAttribute("thread",new Thread("placeholder"));
         return "formThread";
     }
 
     @PostMapping("/savethread")
-    public String saveThread(@ModelAttribute Thread thread) {
-        threadRepository.addThread(thread); // todo replace with call POST /book (with book object as json in request body)
+    public String saveThread(@ModelAttribute Thread thread, @RequestParam String title) {
+        threadRepository.addThread(thread);
         return "redirect:/";
     }
 
@@ -83,7 +84,7 @@ public class ThreadController {
 
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable String title) {
-        Thread thread = threadRepository.getThread(title); // todo replace with call GET /book/{id}
+        Thread thread = threadRepository.getThread(title);
         model.addAttribute(thread);
         return "form";
     }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>New user</title>
+</head>
+<body>
+    <h1>New User</h1>
+
+    <form action="/saveUser" method="POST">
+        Username: <input type= "text" name="username"/>
+        <div th:if="${occupiedUsername}">
+            <div>Username already taken</div>
+        </div>
+        Password: <input type="password" name="password"/>
+        <input type="submit">
+    </form>
+</body>
+</html>
