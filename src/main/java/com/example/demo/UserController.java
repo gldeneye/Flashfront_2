@@ -30,21 +30,10 @@ public class UserController {
         for (User user : userRepository.getAllUsers()) {
             if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
                 session.setAttribute("username", username);
-                model.addAttribute("username",username);
-                model.addAttribute("loginSuccessful", "true");
-                return "threads"; //Skickar inte rätt? "Glömmer bort" trådarna.
+                return "redirect:/";
             }
         }
         return "signIn";
-    }
-
-    @GetMapping("/threads")
-    public String level1(HttpSession session) {
-        String username = (String) session.getAttribute("username");
-        if (username != null) {
-            return "loggedinThreads";
-        }
-        return "threads";
     }
 
     @GetMapping("/newUser")
@@ -54,15 +43,15 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String set(Model model, @ModelAttribute User user, @RequestParam String username, @RequestParam String password) {
+    public String set(Model model, @ModelAttribute User user) {
         boolean occupiedUsername;
         for (User usser : userRepository.getAllUsers()) {
-            if (!(usser.getUserName().equals(username))) {
+            if (!(usser.getUserName().equals(user.getUserName()))) {
                 userRepository.addUser(user);
                 for (User userz : userRepository.getAllUsers()) {
                     System.out.println(userz.getUserName());
                 }
-                return "threads";
+                return "redirect:/";
             }
         }
         occupiedUsername = true;
@@ -75,7 +64,7 @@ public class UserController {
         Cookie cookie = new Cookie("JSESSIONID", "");
         cookie.setMaxAge(0);
         res.addCookie(cookie);
-        return "threads";
+        return "redirect:/";
     }
 
 }

@@ -11,7 +11,10 @@ public class UserRepository {
 
     public UserRepository() {
         users = new ArrayList<>();
+        users.add(new User("Adam","password"));
         users.add(new User("Alex","password"));
+        users.add(new User("Carl","password"));
+        users.add(new User("Erik","password"));
     }
 
     public User getUser(String username) {
