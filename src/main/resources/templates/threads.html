@@ -13,8 +13,6 @@
 </head>
 <body>
 
-<link rel="stylesheet" href="style.css">
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">FlashFront</a>
@@ -32,11 +30,20 @@
 
 </p>
 
+<ul><h2>Welcome to the land of threads</h2></ul>
+
+
+
+
+<ul>
     <div th:switch="loginSuccessful">
         <p th:case="true" th:text="'Logged in as: ' + ${username}"></p>
         <p th:case="*"><a href="/signIn">Sign in</a></p>
 
     <p><a href="/addThread">New Thread</a></p>
+    </div>
+
+    <h3>Recent threads:</h3>
 
     <table style="text-align:left">
         <tr th:each="thread : ${threads}">
@@ -58,6 +65,7 @@
             <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
         </span>
     </div>
+
 
 </body>
 </html>
