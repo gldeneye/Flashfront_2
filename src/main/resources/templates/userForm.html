@@ -9,8 +9,8 @@
 
     <form action="/saveUser" method="POST">
         Username: <input type= "text" name="{userName}"/>
-        Email address: <input th:field="*{email}" type="text"/>
-        Password: <input th:field="*{password}" type="password"/>
+        Email address: <input type="text" name="{email}"/>
+        Password: <input type="text" name="{password}"/>
         <input type="submit" value="Save user">
     </form>
 </body>
