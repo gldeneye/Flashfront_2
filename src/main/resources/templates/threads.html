@@ -37,6 +37,7 @@
 </p>
 
 <div th:if="${session.username != null}">
+    <p><a href="/logout">Log out</a></p>
     <p th:text="'Logged in as: ' + ${session.username}"></p>
     <p><a href="/addThread">New Thread</a></p>
 </div>

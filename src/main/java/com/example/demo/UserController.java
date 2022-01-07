@@ -30,7 +30,7 @@ public class UserController {
         for (User user : userRepository.getAllUsers()) {
             if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
                 session.setAttribute("username", username);
-                return "redirect:/"; //Skickar inte rätt? "Glömmer bort" trådarna.
+                return "redirect:/";
             }
         }
         return "signIn";
@@ -64,7 +64,7 @@ public class UserController {
         Cookie cookie = new Cookie("JSESSIONID", "");
         cookie.setMaxAge(0);
         res.addCookie(cookie);
-        return "threads";
+        return "redirect:/";
     }
 
 }
