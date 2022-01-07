@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class ThreadController {
         Thread thread = threadRepository.getThread(title);
         model.addAttribute("page", page);
         model.addAttribute("thread", thread);
+        model.addAttribute("comments", thread.getComments());
         return "thread";
     }
 
