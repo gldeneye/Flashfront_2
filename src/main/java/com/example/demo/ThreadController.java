@@ -63,12 +63,12 @@ public class ThreadController {
 
     @GetMapping("/addThread")
     public String addThread(Model model) {
-        model.addAttribute("thread", new Thread());
+        model.addAttribute("thread",new Thread("placeholder"));
         return "formThread";
     }
 
     @PostMapping("/savethread")
-    public String saveThread(@ModelAttribute Thread thread) {
+    public String saveThread(@ModelAttribute Thread thread, @RequestParam String title) {
         threadRepository.addThread(thread);
         return "redirect:/";
     }
