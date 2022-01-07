@@ -36,12 +36,13 @@
     <ul>
     <h3 th:text="${thread.title}"></h3>
 
-
+    <div th:if="${session.username != null}">
     <form action="/saveComment" method="POST">
         <textarea class="form-control" rows="5"  name="comment">What are you thinking about?</textarea>
         <input type="hidden" name="title" th:value="${thread.title}">
         <input type="submit" value="Publish">
     </form>
+    </div>
 
      <p>
 

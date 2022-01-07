@@ -36,12 +36,12 @@
 
     <p></p>
 
-    <form action="/saveUser" method="POST">
-        Username: <input type= "text" name="username"/>
+    <form action="/saveUser" th:object="${user}" method="POST">
+        Username: <input type="text" th:field="*{userName}"/>
         <div th:if="${occupiedUsername}">
             <div>Username already taken</div>
         </div>
-        Password: <input type="password" name="password"/>
+        Password: <input type="password" th:field="*{password}"/>
         <input type="submit">
     </form>
 
