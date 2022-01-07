@@ -14,11 +14,11 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setFirstName(String userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
