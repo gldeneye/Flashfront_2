@@ -63,20 +63,23 @@ public class ThreadController {
 
     @GetMapping("/addThread")
     public String addThread(Model model) {
-        model.addAttribute("thread", new Thread());
+        model.addAttribute("thread",new Thread("placeholder"));
         return "formThread";
     }
 
     @PostMapping("/savethread")
-    public String saveThread(@ModelAttribute Thread thread) {
-        threadRepository.addThread(thread); // todo replace with call POST /book (with book object as json in request body)
+    public String saveThread(@ModelAttribute Thread thread, @RequestParam String title) {
+        threadRepository.addThread(thread);
+        System.out.println(thread.getComments());
         return "redirect:/";
     }
 
     @PostMapping("/saveComment")
     public String setComment(Model model, @RequestParam String comment, @RequestParam String title) {
         Thread thread = threadRepository.getThread(title);
+        System.out.println(title);
         thread.setComments(comment);
+        System.out.println(comment);
         model.addAttribute("thread",thread);
             return "thread";
         }

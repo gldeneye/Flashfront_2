@@ -11,8 +11,8 @@ public class ThreadRepository {
 
     public ThreadRepository() {
         threads = new ArrayList<>();
-        threads.add(new Thread("Politics", new ArrayList<>()));
-        threads.add(new Thread("Conspiracy theories", new ArrayList<>()));
+        threads.add(new Thread("Politics"));
+        threads.add(new Thread("Conspiracy theories"));
 
         getThread("Politics").setComments("I don't think your opinion is wrong, but it's not valid either");
         getThread("Politics").setComments("UGH I HATE PEOPLE WHOS OPINIONS DIFFER FROM MINE!!!!!");
