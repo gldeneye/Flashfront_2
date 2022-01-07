@@ -8,10 +8,12 @@
     <h1>New User</h1>
 
     <form action="/saveUser" method="POST">
-        Username: <input type= "text" name="{userName}"/>
-        Email address: <input th:field="*{email}" type="text"/>
-        Password: <input th:field="*{password}" type="password"/>
-        <input type="submit" value="Save user">
+        Username: <input type= "text" name="username"/>
+        <div th:if="${occupiedUsername}">
+            <div>Username already taken</div>
+        </div>
+        Password: <input type="password" name="password"/>
+        <input type="submit">
     </form>
 </body>
 </html>

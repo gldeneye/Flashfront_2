@@ -7,32 +7,31 @@
 <body>
 <h1>Flashfront</h1>
 
-    <div th:switch="loginSuccessful">
-        <p th:case="true" th:text="'Logged in as: ' + ${username}"></p>
-        <p th:case="*"><a href="/signIn">Sign in</a></p>
+<p th:text="' Logged in as: ' + ${session.username}"></p>
+<a href="/logout">Logout</a>
 
-    <p><a href="/addThread">New Thread</a></p>
+<p><a href="/addThread">New Thread</a></p>
 
-    <table style="text-align:left">
-        <tr th:each="thread : ${threads}">
-            <th><a th:href="'/thread/' + ${currentPage} + '/' + ${thread.title}" th:text="${thread.title}"></a></th>
-        </tr>
-    </table>
-    <div>
+<table style="text-align:left">
+    <tr th:each="thread : ${threads}">
+        <th><a th:href="'/thread/' + ${currentPage} + '/' + ${thread.title}" th:text="${thread.title}"></a></th>
+    </tr>
+</table>
+<div>
 
         <span th:if="${showPrev}">
             <a th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>
         </span>
 
-        <span th:each="page : ${pages}">
+    <span th:each="page : ${pages}">
             <span th:if="${currentPage == page}" th:text="${page}"></span>
             <a th:if="${currentPage != page}" th:href="'/?page=' + ${page}" th:text="${page}"></a>
         </span>
 
-        <span th:if="${showNext}">
+    <span th:if="${showNext}">
             <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
         </span>
-    </div>
+</div>
 
 </body>
 </html>
