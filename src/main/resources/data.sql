@@ -12,10 +12,10 @@ INSERT INTO FORUMUSER (ID, USERNAME, PASSWORD) VALUES (2, 'ALEX','PASSWORD');
 INSERT INTO FORUMUSER (ID, USERNAME, PASSWORD) VALUES (3, 'CARL','PASSWORD');
 INSERT INTO FORUMUSER (ID, USERNAME, PASSWORD) VALUES (4, 'ERIK','PASSWORD');
 
-INSERT INTO COMMENTS ( THREADID, FORUMUSERID, COMMENT) VALUES ( 1, 1, 'I dont think your opinion is wrong, but its not valid either');
-INSERT INTO COMMENTS ( THREADID, FORUMUSERID, COMMENT) VALUES ( 1, 2, 'UGH I HATE PEOPLE WHOS OPINIONS DIFFER FROM MINE!!!!!');
-INSERT INTO COMMENTS ( THREADID, FORUMUSERID, COMMENT) VALUES ( 2, 4, 'The moon? Yeah, not real. My buddy Alan at work told me all about it. Apparently saw it in some movie or something, its totally legit.');
-INSERT INTO COMMENTS ( THREADID, FORUMUSERID, COMMENT) VALUES ( 2, 1, 'Have you ever thought about how strange bellybuttons are? I think something is up with those..');
+INSERT INTO COMMENTS (ID, THREADID, FORUMUSERID, COMMENT) VALUES (1, 1, 1, 'I dont think your opinion is wrong, but its not valid either');
+INSERT INTO COMMENTS (ID, THREADID, FORUMUSERID, COMMENT) VALUES (2, 1, 2, 'UGH I HATE PEOPLE WHOS OPINIONS DIFFER FROM MINE!!!!!');
+INSERT INTO COMMENTS (ID, THREADID, FORUMUSERID, COMMENT) VALUES (3, 2, 4, 'The moon? Yeah, not real. My buddy Alan at work told me all about it. Apparently saw it in some movie or something, its totally legit.');
+INSERT INTO COMMENTS (ID, THREADID, FORUMUSERID, COMMENT) VALUES (4, 2, 1, 'Have you ever thought about how strange bellybuttons are? I think something is up with those..');
 
 
 
