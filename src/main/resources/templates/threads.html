@@ -6,28 +6,24 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-<link rel="stylesheet" href="style.css">
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">FlashFront</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="/customers">Login</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/signIn">Login</a></li>
             </ul>
         </div>
     </div>
@@ -36,16 +32,24 @@
 
 </p>
 
+<ul><h2>Welcome to the land of threads</h2>
+
 <div th:if="${session.username != null}">
     <p><a href="/logout">Log out</a></p>
     <p th:text="'Logged in as: ' + ${session.username}"></p>
     <p><a href="/addThread">New Thread</a></p>
 </div>
-<div th:if="${session.username == null}">
-    <p><a href="/signIn">Sign in</a></p>
-</div>
 
-<div>
+
+<h3>Recent threads:</h3>
+
+    <table style="text-align:left">
+        <tr th:each="thread : ${threads}">
+            <th><a th:href="'/thread/' + ${currentPage} + '/' + ${thread.title}" th:text="${thread.title}"></a></th>
+        </tr>
+    </table>
+    <div>
+
         <span th:if="${showPrev}">
             <a th:href="'/?page=' + ${currentPage-1}" th:text="Previous"></a>
         </span>
@@ -59,11 +63,8 @@
             <a th:href="'/?page=' + ${currentPage+1}" th:text="Next"></a>
         </span>
 </div>
-<table style="text-align:left">
-    <tr th:each="thread : ${threads}">
-        <th><a th:href="'/thread/' + ${currentPage} + '/' + ${thread.title}" th:text="${thread.title}"></a></th>
-    </tr>
-</table>
+
+</ul>
 
 </body>
 </html>

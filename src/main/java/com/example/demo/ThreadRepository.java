@@ -13,6 +13,15 @@ public class ThreadRepository {
         threads = new ArrayList<>();
         threads.add(new Thread("Politics"));
         threads.add(new Thread("Conspiracy theories"));
+        threads.add(new Thread("Economics"));
+        threads.add(new Thread("IT-Solutions"));
+        threads.add(new Thread("Cats"));
+        threads.add(new Thread("Horses"));
+        threads.add(new Thread("Crime"));
+        threads.add(new Thread("Sad people"));
+        threads.add(new Thread("Northern people"));
+        threads.add(new Thread("Sad people"));
+        threads.add(new Thread("Northern people"));
 
         getThread("Politics").setComments("I don't think your opinion is wrong, but it's not valid either");
         getThread("Politics").setComments("UGH I HATE PEOPLE WHOS OPINIONS DIFFER FROM MINE!!!!!");
