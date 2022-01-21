@@ -39,7 +39,7 @@
     <div th:if="${session.username != null}">
     <form action="/saveComment" method="POST">
         <textarea class="form-control" rows="5"  name="comment">What are you thinking about?</textarea>
-        <input type="hidden" name="title" th:value="${thread.title}">
+        <input type="hidden" name="name" th:value="${thread.name}">
         <input type="submit" value="Publish">
     </form>
     </div>
