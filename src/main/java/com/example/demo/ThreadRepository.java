@@ -96,7 +96,7 @@ public class ThreadRepository {
                 rs.getString("comment"));
     }
 
-    public Comments addComment(Comments comment) {
+    public void addComment(Comments comment) {
         try (Connection con = dataSource.getConnection();
             PreparedStatement ps = con.prepareStatement("INSERT INTO COMMENTS(THREADID, FORUMUSERID, COMMENT) VALUES (?,?,?) ")) {
             ps.setInt(1, comment.getThreadId());
@@ -106,7 +106,6 @@ public class ThreadRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return comment;
     }
 
 

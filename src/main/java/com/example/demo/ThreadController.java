@@ -1,10 +1,12 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,12 +79,12 @@ public class ThreadController {
     }
 
     @PostMapping("/saveComment")
-    public String setComment(Model model, @RequestParam String comment, @RequestParam String name) {
+    public String setComment(HttpSession session, Model model, @RequestParam String comment, @RequestParam String name) {
         Thread thread = threadRepository.getThreadByName(name);
-//        Comments commentz = threadRepository.addComment(new Comments(thread.getId(), null, comment));
+        Integer forumUserId = (Integer) session.getAttribute("forumUserId");
+        threadRepository.addComment(new Comments(null, thread.getId(), forumUserId, comment));
         model.addAttribute("thread",thread);
-//        model.addAttribute("commentz",commentz);
-            return "thread";
+            return "redirect:/thread/1/" + thread.getId();
         }
 
     @GetMapping("/edit/{id}")

@@ -27,6 +27,7 @@ public class UserController {
         for (ForumUser forumUser : userRepository.getUsers()) {
             if (forumUser.getUserName().equals(username) && forumUser.getPassword().equals(password)) {
                 session.setAttribute("username", username);
+                session.setAttribute("forumUserId", forumUser.getId());
                 return "redirect:/";
             }
         }
