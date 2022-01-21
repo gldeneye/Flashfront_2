@@ -51,7 +51,7 @@ public class ThreadRepository {
         return t;
     }
 
-    public Thread getThreadById(Integer id) {
+    public Thread getThreadById(int id) {
         Thread t = null;
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();

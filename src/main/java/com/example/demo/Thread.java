@@ -16,7 +16,7 @@ public class Thread {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -27,8 +27,8 @@ public class Thread {
         return name;
     }
 
-    public void setTitle(String title) {
-        this.name = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<String> getComments() {

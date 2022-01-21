@@ -18,13 +18,13 @@ public class RestThreadController {
         return threadRepository.getAllThreads();
     }
 
-    @GetMapping("/restThread/{name}")
+    @GetMapping("/restThreadByName/{name}")
     public Thread getThreadByName(@PathVariable String name) {
         return threadRepository.getThreadByName(name);
     }
 
-    @GetMapping("/restThread/{id}")
-    public Thread getThreadById(@PathVariable Integer id) {
+    @GetMapping("/restThreadById/{id}")
+    public Thread getThreadById(@PathVariable int id) {
         return threadRepository.getThreadById(id);
     }
 
