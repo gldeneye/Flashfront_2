@@ -23,7 +23,7 @@ public class Thread {
         this.id = id;
     }
 
-    public String getTitle() {
+    public String getName() {
         return name;
     }
 

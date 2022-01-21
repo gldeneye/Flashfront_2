@@ -18,13 +18,13 @@ public class ThreadRepository {
 
     private List<Thread> threads;
 
-    public List <Thread> ThreadRepository() {
+    public List<Thread> getAllThreads() {
         threads = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * from THREAD")) {
 
-            while (rs.next()){
+            while (rs.next()) {
                 threads.add(rsThread(rs));
             }
 
@@ -34,43 +34,68 @@ public class ThreadRepository {
         return threads;
     }
 
+    public Thread getThreadByName(String name) {
+        Thread t = null;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM THREAD WHERE NAME = ?")) {
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
 
+            if (rs.next()) {
+                t = rsThread(rs);
+            }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return t;
+    }
+
+    public Thread getThreadById(Integer id) {
+        Thread t = null;
+        try (Connection conn = dataSource.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM THREAD WHERE ID =" + id)) {
+
+            if (rs.next()) {
+                t = rsThread(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return t;
+    }
+
+    private Thread rsThread(ResultSet rs) throws SQLException {
+        return new Thread(rs.getInt("id"),
+                rs.getString("name"));
+    }
 
     // get one thread
-        public Thread getThread(String title) {
+
+    public Thread getThread(String title) {
         for (Thread thread : threads) {
-            if (thread.getTitle().equals(title)) {
+            if (thread.getName().equals(title)) {
                 return thread;
             }
         }
         return null;
     }
-
     // get all threads
+
     public List<Thread> getThreads() {
         return threads;
     }
-
     // add a thread
+
     public Thread addThread(Thread thread) {
-        Thread lastThread = threads.get(threads.size()-1);
+        Thread lastThread = threads.get(threads.size() - 1);
         threads.add(thread);
         return thread;
     }
 
     public void editThread(Thread thread) {
     }
-
-
-        private Thread rsThread(ResultSet rs) throws SQLException {
-        return new Thread(rs.getInt("id"),
-        rs.getString("name"));
-        }
-
-
-
-
 
 
 //     Ev adminfunktioner

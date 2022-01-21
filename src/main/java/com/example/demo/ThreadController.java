@@ -33,13 +33,13 @@ public class ThreadController {
         return "threads";
     }
 
-    @GetMapping("/thread/{page}/{title}")
-    public String thread(Model model, @PathVariable Integer page, @PathVariable String title) {
-        Thread thread = threadRepository.getThread(title);
-        model.addAttribute("page", page);
-        model.addAttribute("thread", thread);
-        return "thread";
-    }
+//    @GetMapping("/thread/{page}/{title}")
+//    public String thread(Model model, @PathVariable Integer page, @PathVariable String title) {
+//        Thread thread = threadRepository.getThread(title);
+//        model.addAttribute("page", page);
+//        model.addAttribute("thread", thread);
+//        return "thread";
+//    }
 
     private int[] toArray(int num) {
         int[] result = new int[num];
