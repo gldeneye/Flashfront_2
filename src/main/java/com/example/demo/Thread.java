@@ -4,19 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Thread {
-    private String title;
+    private Integer id;
+    private String name;
     private List<String> comments = new ArrayList<>();
 
-    public Thread(String title) {
-        this.title = title;
+
+
+    public Thread(Integer id, String name) {
+        this.name = name;
+        this.id=id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.name = title;
     }
 
     public List<String> getComments() {
@@ -33,7 +45,7 @@ public class Thread {
     }
 
     public boolean isNew() {
-        return this.title == null;
+        return this.name == null;
     }
 
     public Object setComments() {

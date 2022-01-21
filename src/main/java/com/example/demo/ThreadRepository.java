@@ -1,38 +1,41 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.sql.DataSource;
 import java.awt.print.Book;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ThreadRepository {
+
+    @Autowired
+    private DataSource dataSource;
+
+
     private List<Thread> threads;
 
-    public ThreadRepository() {
+    public List <Thread> ThreadRepository() {
         threads = new ArrayList<>();
-        threads.add(new Thread("Politics"));
-        threads.add(new Thread("Conspiracy theories"));
-        threads.add(new Thread("Economics"));
-        threads.add(new Thread("IT-Solutions"));
-        threads.add(new Thread("Cats"));
-        threads.add(new Thread("Horses"));
-        threads.add(new Thread("Crime"));
-        threads.add(new Thread("Sad people"));
-        threads.add(new Thread("Northern people"));
-        threads.add(new Thread("Sad people"));
-        threads.add(new Thread("Northern people"));
+        try (Connection conn = dataSource.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * from THREAD")) {
 
-        getThread("Politics").setComments("I don't think your opinion is wrong, but it's not valid either");
-        getThread("Politics").setComments("UGH I HATE PEOPLE WHOS OPINIONS DIFFER FROM MINE!!!!!");
-        getThread("Politics").setComments("What is the funniest thing you ever saw on YouTube?");
-        getThread("Politics").setComments("I am running for president, pls support me.");
+            while (rs.next()){
+                threads.add(rsThread(rs));
+            }
 
-        getThread("Conspiracy theories").setComments("The moon? Yeah, not real. My buddy Alan at work told me all about it. Apparently saw it in some movie or something, it's totally legit.");
-        getThread("Conspiracy theories").setComments("Have you ever thought about how strange bellybuttons are? I think something is up with those..");
-        getThread("Conspiracy theories").setComments("My UFO experience.");
-        getThread("Conspiracy theories").setComments("Aliens will land on earth 22/12/22");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return threads;
     }
+
+
+
 
     // get one thread
         public Thread getThread(String title) {
@@ -58,6 +61,16 @@ public class ThreadRepository {
 
     public void editThread(Thread thread) {
     }
+
+
+        private Thread rsThread(ResultSet rs) throws SQLException {
+        return new Thread(rs.getInt("id"),
+        rs.getString("name"));
+        }
+
+
+
+
 
 
 //     Ev adminfunktioner

@@ -64,7 +64,7 @@ public class ThreadController {
 
     @GetMapping("/addThread")
     public String addThread(Model model) {
-        model.addAttribute("thread",new Thread("placeholder"));
+        model.addAttribute("thread",new Thread(10,"placeholder"));
         return "formThread";
     }
 
