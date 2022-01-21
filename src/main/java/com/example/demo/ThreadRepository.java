@@ -66,7 +66,7 @@ public class ThreadRepository {
         return t;
     }
 
-    private Thread rsThread(ResultSet rs) throws SQLException {
+    public Thread rsThread(ResultSet rs) throws SQLException {
         return new Thread(rs.getInt("id"),
                 rs.getString("name"));
     }
@@ -81,11 +81,13 @@ public class ThreadRepository {
         }
         return null;
     }
+
     // get all threads
 
     public List<Thread> getThreads() {
         return threads;
     }
+
     // add a thread
 
     public Thread addThread(Thread thread) {
@@ -96,6 +98,12 @@ public class ThreadRepository {
 
     public void editThread(Thread thread) {
     }
+
+
+
+
+
+
 
 
 //     Ev adminfunktioner
