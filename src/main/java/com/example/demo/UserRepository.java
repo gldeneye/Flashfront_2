@@ -7,18 +7,18 @@ import java.util.List;
 
 @Service
 public class UserRepository {
-    private List<User> users;
+    private List<ForumUser> users;
 
     public UserRepository() {
         users = new ArrayList<>();
-        users.add(new User("Adam","password"));
-        users.add(new User("Alex","password"));
-        users.add(new User("Carl","password"));
-        users.add(new User("Erik","password"));
+        users.add(new ForumUser("Adam","password"));
+        users.add(new ForumUser("Alex","password"));
+        users.add(new ForumUser("Carl","password"));
+        users.add(new ForumUser("Erik","password"));
     }
 
-    public User getUser(String username) {
-        for (User user : users) {
+    public ForumUser getUser(String username) {
+        for (ForumUser user : users) {
             if (user.getUserName().equals(username)) {
                 return user;
             }
@@ -26,12 +26,12 @@ public class UserRepository {
         return null;
     }
 
-    public List<User> getAllUsers() {
+    public List<ForumUser> getAllUsers() {
         return users;
     }
 
-    public User addUser(User user) {
-        User lastUser = users.get(users.size() - 1);
+    public ForumUser addUser(ForumUser user) {
+        ForumUser lastUser = users.get(users.size() - 1);
         users.add(user);
         return user;
     }

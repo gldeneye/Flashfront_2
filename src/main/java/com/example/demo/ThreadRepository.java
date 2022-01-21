@@ -15,7 +15,7 @@ public class ThreadRepository {
     @Autowired
     private DataSource dataSource;
 
-
+    //Threads
     private List<Thread> threads;
 
     public List<Thread> getAllThreads() {
@@ -66,6 +66,12 @@ public class ThreadRepository {
         return t;
     }
 
+    public Thread rsThread(ResultSet rs) throws SQLException {
+        return new Thread(rs.getInt("id"),
+                rs.getString("name"));
+    }
+
+    //Comments
     public List<Comments> listComments(int threadid) {
         List<Comments> comments = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
@@ -75,7 +81,7 @@ public class ThreadRepository {
                      "WHERE THREAD.ID = " + threadid)) {
 
             while (rs.next()) {
-               comments.add(rsComment(rs));
+                comments.add(rsComment(rs));
             }
 
         } catch (SQLException e) {
@@ -84,16 +90,17 @@ public class ThreadRepository {
         return comments;
     }
 
-    public Thread rsThread(ResultSet rs) throws SQLException {
-        return new Thread(rs.getInt("id"),
-                rs.getString("name"));
-    }
+    public
+
     public Comments rsComment(ResultSet rs) throws SQLException {
         return new Comments(rs.getInt("id"),
                 rs.getInt("threadId"),
                 rs.getInt("forumuserId"),
                 rs.getString("comment"));
     }
+
+
+
 
     // get one thread
 

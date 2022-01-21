@@ -1,13 +1,13 @@
 package com.example.demo;
 
-public class User {
+public class ForumUser {
     private String userName;
     private String password;
 
-    public User() {
+    public ForumUser() {
     }
 
-    public User(String userName, String password) {
+    public ForumUser(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
