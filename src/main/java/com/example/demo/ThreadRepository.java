@@ -17,8 +17,7 @@ public class ThreadRepository {
 
 
     private List<Thread> threads;
-
-    public List <Thread> ThreadRepository() {
+    public List <Thread> getAllThreads() {
         threads = new ArrayList<>();
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
@@ -40,7 +39,7 @@ public class ThreadRepository {
     // get one thread
         public Thread getThread(String title) {
         for (Thread thread : threads) {
-            if (thread.getTitle().equals(title)) {
+            if (thread.getName().equals(title)) {
                 return thread;
             }
         }

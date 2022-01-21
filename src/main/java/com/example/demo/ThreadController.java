@@ -29,7 +29,6 @@ public class ThreadController {
         model.addAttribute("currentPage", page);
         model.addAttribute("showPrev", page > 1);
         model.addAttribute("showNext", page < pageCount);
-
         return "threads";
     }
 
@@ -50,7 +49,7 @@ public class ThreadController {
     }
 
     private List<Thread> getPage(int page, int pageSize) {
-        List<Thread> threads = threadRepository.getThreads();
+        List<Thread> threads = threadRepository.getAllThreads();
         int from = Math.max(0, page * pageSize);
         int to = Math.min(threads.size(), (page + 1) * pageSize);
 
