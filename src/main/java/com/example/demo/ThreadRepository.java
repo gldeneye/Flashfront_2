@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
-import java.awt.print.Book;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,8 +89,6 @@ public class ThreadRepository {
         return comments;
     }
 
-    public
-
     public Comments rsComment(ResultSet rs) throws SQLException {
         return new Comments(rs.getInt("id"),
                 rs.getInt("threadId"),
@@ -99,7 +96,18 @@ public class ThreadRepository {
                 rs.getString("comment"));
     }
 
-
+    public Comments addComment(Comments comment) {
+        try (Connection con = dataSource.getConnection();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO COMMENTS(THREADID, FORUMUSERID, COMMENT) VALUES (?,?,?) ")) {
+            ps.setInt(1, comment.getThreadId());
+            ps.setInt(2, comment.getForumUserId());
+            ps.setString(3, comment.getComment());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return comment;
+    }
 
 
     // get one thread

@@ -13,6 +13,7 @@ public class Comments {
         this.comment = comment;
     }
 
+
     public Integer getId() {
         return Id;
     }
@@ -21,7 +22,7 @@ public class Comments {
         Id = id;
     }
 
-    public Integer getThreadId() {
+    public int getThreadId() {
         return threadId;
     }
 
@@ -29,7 +30,7 @@ public class Comments {
         this.threadId = threadId;
     }
 
-    public Integer getForumUserId() {
+    public int getForumUserId() {
         return forumUserId;
     }
 

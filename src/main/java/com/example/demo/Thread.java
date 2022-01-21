@@ -47,9 +47,6 @@ public class Thread {
         return this.name == null;
     }
 
-    public Object setComments() {
-        return null;
-    }
 
 //    public int getNumOfComments(){
 //        int numOfComments = comments.size();

@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping("/existingUser")
     public String loginExistingUser(HttpSession session,Model model, @RequestParam String username, @RequestParam String password) {
-        for (ForumUser forumUser : userRepository.getAllUsers()) {
+        for (ForumUser forumUser : userRepository.getUsers()) {
             if (forumUser.getUserName().equals(username) && forumUser.getPassword().equals(password)) {
                 session.setAttribute("username", username);
                 return "redirect:/";

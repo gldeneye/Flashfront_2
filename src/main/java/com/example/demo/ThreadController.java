@@ -76,13 +76,14 @@ public class ThreadController {
         return "redirect:/";
     }
 
-//    @PostMapping("/saveComment")
-//    public String setComment(Model model, @RequestParam String comment, @RequestParam String title) {
-//        Thread thread = threadRepository.getThread(title);
-//        thread.setComments(comment);
-//        model.addAttribute("thread",thread);
-//            return "thread";
-//        }
+    @PostMapping("/saveComment")
+    public String setComment(Model model, @RequestParam String comment, @RequestParam String name) {
+        Thread thread = threadRepository.getThreadByName(name);
+//        Comments commentz = threadRepository.addComment(new Comments(thread.getId(), null, comment));
+        model.addAttribute("thread",thread);
+//        model.addAttribute("commentz",commentz);
+            return "thread";
+        }
 
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable String title) {
