@@ -1,39 +1,62 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserRepository {
-    private List<User> users;
+    private List<ForumUser> forumUsers;
 
-    public UserRepository() {
-        users = new ArrayList<>();
-        users.add(new User("Adam","password"));
-        users.add(new User("Alex","password"));
-        users.add(new User("Carl","password"));
-        users.add(new User("Erik","password"));
+    @Autowired
+    private DataSource dataSource;
+
+    public List <ForumUser> getUsers() {
+        forumUsers = new ArrayList<>();
+        try (Connection conn = dataSource.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * from FORUMUSER")) {
+
+            while (rs.next()) {
+                forumUsers.add(rsForumUser(rs));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return forumUsers;
     }
 
-    public User getUser(String username) {
-        for (User user : users) {
-            if (user.getUserName().equals(username)) {
-                return user;
+    public ForumUser getUser(String username) {
+        for (ForumUser forumUser : forumUsers) {
+            if (forumUser.getUserName().equals(username)) {
+                return forumUser;
             }
         }
         return null;
     }
 
-    public List<User> getAllUsers() {
-        return users;
+    public List<ForumUser> getAllUsers() {
+        return forumUsers;
     }
 
-    public User addUser(User user) {
-        User lastUser = users.get(users.size() - 1);
-        users.add(user);
-        return user;
+    public ForumUser addUser(ForumUser forumUser) {
+        ForumUser lastForumUser = forumUsers.get(forumUsers.size() - 1);
+        forumUsers.add(forumUser);
+        return forumUser;
+    }
+
+    public ForumUser rsForumUser(ResultSet rs) throws SQLException {
+        return new ForumUser(rs.getInt("id"),
+                rs.getString("username"),
+                rs.getString("password"));
     }
 
 }

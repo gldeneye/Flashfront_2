@@ -1,15 +1,23 @@
 package com.example.demo;
 
-public class User {
+public class ForumUser {
+
+    private Integer id;
     private String userName;
     private String password;
 
-    public User() {
-    }
-
-    public User(String userName, String password) {
+    public ForumUser(Integer id, String userName, String password) {
+        this.id = id;
         this.userName = userName;
         this.password = password;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -27,4 +35,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
+
