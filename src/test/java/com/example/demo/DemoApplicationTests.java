@@ -35,6 +35,12 @@ class DemoApplicationTests {
 		Assertions.assertEquals("Politics", t.getName());
 	}
 
+	@Test
+	public void testGetCommentsByThread() {
+		List<Comments> c = threadRepository.listComments(1);
+		Assertions.assertEquals(2,c.size());
+	}
+
 
 //	@Test
 //	void addNewComments(){

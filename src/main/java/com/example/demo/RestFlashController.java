@@ -30,10 +30,10 @@ public class RestFlashController {
     }
 
     //Comments
-//    @GetMapping("/restComments")
-//    public List<Comments> listComments() {
-//        return threadRepository.listComments();
-//    }
+    @GetMapping("/restComments/{id}")
+    public List<Comments> listCommentsByThread(@PathVariable int id) {
+        return threadRepository.listComments(id);
+    }
 
 
 
