@@ -18,14 +18,14 @@ public class UserController {
     public UserRepository userRepository;
 
     @GetMapping("/signIn")
-    public String users(Model model) {
+    public String forumUsers(Model model) {
         return "signIn";
     }
 
     @PostMapping("/existingUser")
     public String loginExistingUser(HttpSession session,Model model, @RequestParam String username, @RequestParam String password) {
-        for (ForumUser user : userRepository.getAllUsers()) {
-            if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
+        for (ForumUser forumUser : userRepository.getAllUsers()) {
+            if (forumUser.getUserName().equals(username) && forumUser.getPassword().equals(password)) {
                 session.setAttribute("username", username);
                 return "redirect:/";
             }
@@ -33,18 +33,18 @@ public class UserController {
         return "signIn";
     }
 
-    @GetMapping("/newUser")
+   /* @GetMapping("/newUser")
     public String add(Model model) {
         model.addAttribute("user", new ForumUser());
         return "userForm";
-    }
+    }*/
 
     @PostMapping("/saveUser")
-    public String set(Model model, @ModelAttribute ForumUser user) {
+    public String set(Model model, @ModelAttribute ForumUser forumUser) {
         boolean occupiedUsername;
         for (ForumUser usser : userRepository.getAllUsers()) {
-            if (!(usser.getUserName().equals(user.getUserName()))) {
-                userRepository.addUser(user);
+            if (!(usser.getUserName().equals(forumUser.getUserName()))) {
+                userRepository.addUser(forumUser);
                 for (ForumUser userz : userRepository.getAllUsers()) {
                     System.out.println(userz.getUserName());
                 }

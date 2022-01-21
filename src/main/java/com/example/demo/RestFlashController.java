@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,9 @@ public class RestFlashController {
 
     @Autowired
     public ThreadRepository threadRepository;
+
+    @Autowired
+    public UserRepository userRepository;
 
     // Threads
     @GetMapping("/restThreads")
@@ -35,7 +39,10 @@ public class RestFlashController {
         return threadRepository.listComments(id);
     }
 
-
+    @GetMapping ("/restUsers")
+    public List <ForumUser> listUsers (){
+        return userRepository.getUsers();
+    }
 
 
 }
