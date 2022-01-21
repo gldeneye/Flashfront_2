@@ -128,10 +128,14 @@ public class ThreadRepository {
 
     // add a thread
 
-    public Thread addThread(Thread thread) {
-        Thread lastThread = threads.get(threads.size() - 1);
-        threads.add(thread);
-        return thread;
+    public void addThread(Thread thread) {
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement ps = con.prepareStatement("INSERT INTO THREAD(NAME) VALUES (?) ")) {
+            ps.setString(1, thread.getName());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void editThread(Thread thread) {
