@@ -35,8 +35,11 @@ public class ThreadController {
     @GetMapping("/thread/{page}/{id}")
     public String thread(Model model, @PathVariable Integer page, @PathVariable int id) {
         Thread thread = threadRepository.getThreadById(id);
+        List<Comments> comments = threadRepository.listComments(id);
         model.addAttribute("page", page);
         model.addAttribute("thread", thread);
+        model.addAttribute("comments", comments);
+
         return "thread";
     }
 
@@ -73,13 +76,13 @@ public class ThreadController {
         return "redirect:/";
     }
 
-    @PostMapping("/saveComment")
-    public String setComment(Model model, @RequestParam String comment, @RequestParam String title) {
-        Thread thread = threadRepository.getThread(title);
-        thread.setComments(comment);
-        model.addAttribute("thread",thread);
-            return "thread";
-        }
+//    @PostMapping("/saveComment")
+//    public String setComment(Model model, @RequestParam String comment, @RequestParam String title) {
+//        Thread thread = threadRepository.getThread(title);
+//        thread.setComments(comment);
+//        model.addAttribute("thread",thread);
+//            return "thread";
+//        }
 
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable String title) {

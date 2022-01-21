@@ -66,9 +66,33 @@ public class ThreadRepository {
         return t;
     }
 
+    public List<Comments> listComments(int threadid) {
+        List<Comments> comments = new ArrayList<>();
+        try (Connection conn = dataSource.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM COMMENTS " +
+                     "JOIN THREAD ON COMMENTS.THREADID = THREAD.ID " +
+                     "WHERE THREAD.ID = " + threadid)) {
+
+            while (rs.next()) {
+               comments.add(rsComment(rs));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return comments;
+    }
+
     public Thread rsThread(ResultSet rs) throws SQLException {
         return new Thread(rs.getInt("id"),
                 rs.getString("name"));
+    }
+    public Comments rsComment(ResultSet rs) throws SQLException {
+        return new Comments(rs.getInt("id"),
+                rs.getInt("threadId"),
+                rs.getInt("forumuserId"),
+                rs.getString("comment"));
     }
 
     // get one thread

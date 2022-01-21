@@ -6,8 +6,7 @@ import java.util.List;
 public class Thread {
     private Integer id;
     private String name;
-    private List<String> comments = new ArrayList<>();
-
+//    private List<String> comments = new ArrayList<>();
 
 
     public Thread(Integer id, String name) {
@@ -31,18 +30,18 @@ public class Thread {
         this.name = name;
     }
 
-    public List<String> getComments() {
-        return comments;
-    }
-
-    public String getSpecificComment(int place) {
-        return comments.get(place);
-    }
-
-    public Object setComments(String comment) {
-        this.comments.add(comment);
-        return null;
-    }
+//    public List<String> getComments() {
+//        return comments;
+//    }
+//
+//    public String getSpecificComment(int place) {
+//        return comments.get(place);
+//    }
+//
+//    public Object setComments(String comment) {
+//        this.comments.add(comment);
+//        return null;
+//    }
 
     public boolean isNew() {
         return this.name == null;
@@ -52,8 +51,8 @@ public class Thread {
         return null;
     }
 
-    public int getNumOfComments(){
-        int numOfComments = comments.size();
-        return numOfComments;
-    }
+//    public int getNumOfComments(){
+//        int numOfComments = comments.size();
+//        return numOfComments;
+//    }
 }

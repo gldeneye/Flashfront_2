@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class RestThreadController {
+public class RestFlashController {
 
     @Autowired
     public ThreadRepository threadRepository;
 
+    // Threads
     @GetMapping("/restThreads")
     public List<Thread> listThread() {
         return threadRepository.getAllThreads();
@@ -27,5 +28,14 @@ public class RestThreadController {
     public Thread getThreadById(@PathVariable int id) {
         return threadRepository.getThreadById(id);
     }
+
+    //Comments
+//    @GetMapping("/restComments")
+//    public List<Comments> listComments() {
+//        return threadRepository.listComments();
+//    }
+
+
+
 
 }
